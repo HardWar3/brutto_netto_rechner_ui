@@ -1,59 +1,121 @@
-﻿<Window x:Class="brutto_netto_rechner_ui.bruttonettogui"
+﻿<Window x:Class="brutto_netto_rechner_ui.Bruttonettogui"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:brutto_netto_rechner_ui"
         mc:Ignorable="d"
-        Title="Brutto Netto Rechner" Height="800" Width="500">
+        Title="Brutto Netto Rechner" MinHeight="500" MinWidth="480" Height="500" Width="480"
+        ResizeMode="CanMinimize">
     <Grid>
-        <StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label VerticalContentAlignment="Center" Padding="5" Width="300">Brutto Gehalt: </Label>
+        <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Brutto Gehalt: </Label>
+                    <!--
+                        TODO
+                        1 variable name for backend
+                        2 numeric self handle with PreviewTextInput="funtction name" 
+                          function looks like name(object sender, DataObjectPastingEventArgs event)
+                    -->
+                    <TextBox MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right">3000</TextBox>
+                    <Label VerticalContentAlignment="Center" Padding="5">€</Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Abrechnungsart:</Label>
+                    <RadioButton VerticalContentAlignment="Center" IsChecked="True" >Monat</RadioButton>
+                    <RadioButton VerticalContentAlignment="Center">Jahr</RadioButton>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Abrechnungsjahr:</Label>
+                    <ComboBox Width="120">
+                        <ComboBoxItem IsSelected="True" >2024</ComboBoxItem>
+                        <ComboBoxItem>2023</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Versorgungsbezüge</Label>
+                    <TextBox MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right">0</TextBox>
+                    <Label VerticalContentAlignment="Center" Padding="5">€</Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Steuerklasse</Label>
+                    <ComboBox Width="120">
+                        <ComboBoxItem IsSelected="True">Klasse 1</ComboBoxItem>
+                        <ComboBoxItem>Klasse 2</ComboBoxItem>
+                        <ComboBoxItem>Klasse 3</ComboBoxItem>
+                        <ComboBoxItem>Klasse 4</ComboBoxItem>
+                        <ComboBoxItem>Klasse 5</ComboBoxItem>
+                        <ComboBoxItem>Klasse 6</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">In der Kirsche</Label>
+                    <RadioButton VerticalContentAlignment="Center" IsChecked="True">Ja</RadioButton>
+                    <RadioButton VerticalContentAlignment="Center">Nein</RadioButton>
+                </StackPanel>
                 <!--
-                    TODO
-                    1 variable name for backend
-                    2 numeric self handle with PreviewTextInput="funtction name" 
-                      function looks like name(object sender, DataObjectPastingEventArgs event)
+                    später ändern zu etwas anderem
                 -->
-                    <TextBox MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120">Placeholder</TextBox>
+                <StackPanel Orientation="Horizontal">
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Ost oder West</Label>
+                    <RadioButton VerticalContentAlignment="Center" IsChecked="True">Ost</RadioButton>
+                    <RadioButton VerticalContentAlignment="Center">West</RadioButton>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Wenn ost! In Sachen?</Label>
+                    <RadioButton VerticalContentAlignment="Center" >Ja</RadioButton>
+                    <RadioButton VerticalContentAlignment="Center" IsChecked="True">Nein</RadioButton>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Wie Alt bist Du?</Label>
+                    <TextBox MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120">25</TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Kinder?</Label>
+                    <RadioButton x:Name="kinder_ja_radioButton" Checked="kinder_ja_radioButton_onChecked" Unchecked="kinder_ja_radioButton_onChecked" VerticalContentAlignment="Center">Ja</RadioButton>
+                    <RadioButton VerticalContentAlignment="Center" IsChecked="True">Nein</RadioButton>
+                </StackPanel>
+                <StackPanel x:Name="kinderfreibetrag_Panel" Orientation="Horizontal" Visibility="Collapsed">
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Kinderfreibetrag</Label>
+                    <ComboBox Width="120">
+                        <ComboBoxItem IsSelected="True">0</ComboBoxItem>
+                        <ComboBoxItem >0.5</ComboBoxItem>
+                        <ComboBoxItem >1</ComboBoxItem>
+                        <ComboBoxItem >1.5</ComboBoxItem>
+                        <ComboBoxItem >2</ComboBoxItem>
+                        <ComboBoxItem >2.5</ComboBoxItem>
+                        <ComboBoxItem >3</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Krankenversicherung?</Label>
+                    <ComboBox x:Name="krankenversicherung_combobox" SelectionChanged="krankenversicherung_combobox_onChanged" Width="120">
+                        <ComboBoxItem IsSelected="True">gesetzliche Versicherung</ComboBoxItem>
+                        <ComboBoxItem x:Name="privatversicherung_comboboxItem">private Versicherung</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel x:Name="privatversicherung_Panel" Orientation="Horizontal" Visibility="Collapsed">
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Wie hoch ist der Privat Versicherungsbeitrag?</Label>
+                    <TextBox MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right">0</TextBox>
+                    <Label VerticalContentAlignment="Center" Padding="5">€</Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">KV-Zusatzbeitrag</Label>
+                    <TextBox MaxLines="1" MaxLength="3" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right">1,7</TextBox>
+                    <Label VerticalContentAlignment="Center" Padding="5">%</Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Rentenversicherung</Label>
+                    <ComboBox Width="120">
+                        <ComboBoxItem IsSelected="True">gesetzliche Versicherung</ComboBoxItem>
+                        <ComboBoxItem>private Versicherung</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Margin="0 20 0 0">
+                    <Button Width="120">Berechnen</Button>
+                </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label VerticalContentAlignment="Center" Padding="5" Width="300">Abrechnungsart:</Label>
-                <RadioButton IsChecked="True" >Monat</RadioButton>
-                <RadioButton>Jahr</RadioButton>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label VerticalContentAlignment="Center" Padding="5" Width="300">Geldwerter Vorteil: RENAMEN</Label>
-                <TextBox MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120">Placeholder</TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label VerticalContentAlignment="Center" Padding="5" Width="300">Abrechnungsjahr:</Label>
-                <ComboBox Width="120">
-                    <ComboBoxItem IsSelected="True" >2024</ComboBoxItem>
-                    <ComboBoxItem>2023</ComboBoxItem>
-                </ComboBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label VerticalContentAlignment="Center" Padding="5" Width="300">Jährlich Steuerfreibetrag</Label>
-                <TextBox MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120">Placeholder</TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label VerticalContentAlignment="Center" Padding="5" Width="300">Steuerklasse</Label>
-                <ComboBox>
-                    <ComboBoxItem IsSelected="True">Klasse 1</ComboBoxItem>
-                    <ComboBoxItem>Klasse 2</ComboBoxItem>
-                    <ComboBoxItem>Klasse 3</ComboBoxItem>
-                    <ComboBoxItem>Klasse 4</ComboBoxItem>
-                    <ComboBoxItem>Klasse 5</ComboBoxItem>
-                    <ComboBoxItem>Klasse 6</ComboBoxItem>
-                </ComboBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label VerticalContentAlignment="Center" Padding="5" Width="300">In der Kirsche</Label>
-                <RadioButton IsChecked="True">Ja</RadioButton>
-                <RadioButton>Nein</RadioButton>
-            </StackPanel>
-        </StackPanel>
+        </Border>
     </Grid>
 </Window>
