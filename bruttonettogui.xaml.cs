@@ -12,11 +12,11 @@ using System.Windows.Shapes;
 namespace brutto_netto_rechner_ui
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for bruttonettogui.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class bruttonettogui : Window
     {
-        public MainWindow()
+        public bruttonettogui()
         {
             InitializeComponent();
         }
