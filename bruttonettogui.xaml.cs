@@ -54,5 +54,14 @@ namespace brutto_netto_rechner_ui
                 kinderfreibetrag_Panel.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void input_only_numbers(object sender, TextCompositionEventArgs e)
+        {
+            char input = char.Parse(e.Text);
+            if (input < '0' || input > '9') {
+                e.Handled = true; 
+                return;
+            }
+        }
     }
 }

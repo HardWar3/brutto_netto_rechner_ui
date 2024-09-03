@@ -5,20 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:brutto_netto_rechner_ui"
         mc:Ignorable="d"
-        Title="Brutto Netto Rechner" MinHeight="500" MinWidth="480" Height="500" Width="480"
+        Title="Brutto Netto Rechner" MinHeight="480" MinWidth="480" Height="480" Width="480"
         ResizeMode="CanMinimize">
     <Grid>
         <Border HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Brutto Gehalt: </Label>
-                    <!--
-                        TODO
-                        1 variable name for backend
-                        2 numeric self handle with PreviewTextInput="funtction name" 
-                          function looks like name(object sender, DataObjectPastingEventArgs event)
-                    -->
-                    <TextBox MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right">3000</TextBox>
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Brutto Gehalt:</Label>
+                    <TextBox MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right" PreviewTextInput="input_only_numbers">3000</TextBox>
                     <Label VerticalContentAlignment="Center" Padding="5">€</Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
@@ -35,7 +29,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label VerticalContentAlignment="Center" Padding="5" Width="300">Versorgungsbezüge</Label>
-                    <TextBox MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right">0</TextBox>
+                    <TextBox MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right" PreviewTextInput="input_only_numbers">0</TextBox>
                     <Label VerticalContentAlignment="Center" Padding="5">€</Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
@@ -54,22 +48,30 @@
                     <RadioButton VerticalContentAlignment="Center" IsChecked="True">Ja</RadioButton>
                     <RadioButton VerticalContentAlignment="Center">Nein</RadioButton>
                 </StackPanel>
-                <!--
-                    später ändern zu etwas anderem
-                -->
                 <StackPanel Orientation="Horizontal">
-                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Ost oder West</Label>
-                    <RadioButton VerticalContentAlignment="Center" IsChecked="True">Ost</RadioButton>
-                    <RadioButton VerticalContentAlignment="Center">West</RadioButton>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Wenn ost! In Sachen?</Label>
-                    <RadioButton VerticalContentAlignment="Center" >Ja</RadioButton>
-                    <RadioButton VerticalContentAlignment="Center" IsChecked="True">Nein</RadioButton>
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Bundesland</Label>
+                    <ComboBox Width="120">
+                        <ComboBoxItem IsSelected="True">Berlin</ComboBoxItem>
+                        <ComboBoxItem >Bremen</ComboBoxItem>
+                        <ComboBoxItem >Hamburg</ComboBoxItem>
+                        <ComboBoxItem >Brandenburg</ComboBoxItem>
+                        <ComboBoxItem >Sachsen</ComboBoxItem>
+                        <ComboBoxItem >Sachsen-Anhalt</ComboBoxItem>
+                        <ComboBoxItem >Niedersachsen</ComboBoxItem>
+                        <ComboBoxItem >Schleswig-Holstein</ComboBoxItem>
+                        <ComboBoxItem >Mecklengurg-Vorpommern</ComboBoxItem>
+                        <ComboBoxItem >Nordrhein-Westfalen</ComboBoxItem>
+                        <ComboBoxItem >Hessen</ComboBoxItem>
+                        <ComboBoxItem >Thüringen</ComboBoxItem>
+                        <ComboBoxItem >Rheinland-Pfalz</ComboBoxItem>
+                        <ComboBoxItem >Saarland</ComboBoxItem>
+                        <ComboBoxItem >Baden-Württemberg</ComboBoxItem>
+                        <ComboBoxItem >Bayern</ComboBoxItem>
+                    </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label VerticalContentAlignment="Center" Padding="5" Width="300">Wie Alt bist Du?</Label>
-                    <TextBox MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120">25</TextBox>
+                    <TextBox MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120" PreviewTextInput="input_only_numbers">25</TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label VerticalContentAlignment="Center" Padding="5" Width="300">Kinder?</Label>
