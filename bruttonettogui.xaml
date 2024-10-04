@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:brutto_netto_rechner_ui"
         mc:Ignorable="d"
-        Title="Brutto Netto Rechner" MinHeight="480" MinWidth="480" Height="480" Width="480"
-        ResizeMode="CanMinimize">
+        Title="Brutto Netto Rechner"
+        ResizeMode="CanMinimize"
+        SizeToContent="WidthAndHeight">
     <Grid>
-        <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label VerticalContentAlignment="Center" Padding="5" Width="300">Brutto Gehalt:</Label>
@@ -44,7 +45,7 @@
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">In der Kirsche</Label>
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">In der Kirche</Label>
                     <RadioButton VerticalContentAlignment="Center" IsChecked="True">Ja</RadioButton>
                     <RadioButton VerticalContentAlignment="Center">Nein</RadioButton>
                 </StackPanel>
@@ -98,12 +99,12 @@
                     </ComboBox>
                 </StackPanel>
                 <StackPanel x:Name="privatversicherung_Panel" Orientation="Horizontal" Visibility="Collapsed">
-                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Wie hoch ist der Privat Versicherungsbeitrag?</Label>
-                    <TextBox MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right">0</TextBox>
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Wie hoch ist der Private Versicherungsbeitrag?</Label>
+                    <TextBox MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right" PreviewTextInput="input_only_numbers">0</TextBox>
                     <Label VerticalContentAlignment="Center" Padding="5">€</Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">KV-Zusatzbeitrag</Label>
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Krankenversicherung-Zusatzbeitrag</Label>
                     <TextBox MaxLines="1" MaxLength="3" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right">1,7</TextBox>
                     <Label VerticalContentAlignment="Center" Padding="5">%</Label>
                 </StackPanel>
@@ -115,7 +116,7 @@
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Margin="0 20 0 0">
-                    <Button Width="120">Berechnen</Button>
+                    <Button Width="120" Click="on_submit_the_caluation">Berechnen</Button>
                 </StackPanel>
             </StackPanel>
         </Border>

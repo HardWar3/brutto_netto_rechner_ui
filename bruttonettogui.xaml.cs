@@ -63,5 +63,18 @@ namespace brutto_netto_rechner_ui
                 return;
             }
         }
+
+        private void on_submit_the_caluation(object sender, RoutedEventArgs e)
+        {
+            // view programm abgespeckte class der lohnsteuerprogramms (nur die sachen die benötigt werden)
+            // caluation programm full class der lohnsteuerprogramms
+            // MMF Memorey mapped file
+            // 1 speichern von wichtigen sachen (class needs for the calcuation (values))
+            // 2 startet er das prgamm
+            // 3 warten auf endergebnis
+            // 4 ausgabe in die view
+
+            MessageBox.Show("KEKS");
+        }
     }
 }
