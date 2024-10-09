@@ -13,29 +13,29 @@
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label VerticalContentAlignment="Center" Padding="5" Width="300">Brutto Gehalt:</Label>
-                    <TextBox MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right" PreviewTextInput="input_only_numbers">3000</TextBox>
+                    <TextBox x:Name="bruttogehalt" MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right" PreviewTextInput="input_only_numbers">3000</TextBox>
                     <Label VerticalContentAlignment="Center" Padding="5">€</Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label VerticalContentAlignment="Center" Padding="5" Width="300">Abrechnungsart:</Label>
-                    <RadioButton VerticalContentAlignment="Center" IsChecked="True" >Monat</RadioButton>
+                    <RadioButton x:Name="abrechnungsart" VerticalContentAlignment="Center" IsChecked="True" >Monat</RadioButton>
                     <RadioButton VerticalContentAlignment="Center">Jahr</RadioButton>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label VerticalContentAlignment="Center" Padding="5" Width="300">Abrechnungsjahr:</Label>
-                    <ComboBox Width="120">
+                    <ComboBox x:Name="abrechnungsjahr" Width="120">
                         <ComboBoxItem IsSelected="True" >2024</ComboBoxItem>
-                        <ComboBoxItem>2023</ComboBoxItem>
+                        <ComboBoxItem>2025</ComboBoxItem>
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label VerticalContentAlignment="Center" Padding="5" Width="300">Versorgungsbezüge</Label>
-                    <TextBox MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right" PreviewTextInput="input_only_numbers">0</TextBox>
+                    <TextBox x:Name="versorgungsbezuege" MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right" PreviewTextInput="input_only_numbers">0</TextBox>
                     <Label VerticalContentAlignment="Center" Padding="5">€</Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label VerticalContentAlignment="Center" Padding="5" Width="300">Steuerklasse</Label>
-                    <ComboBox Width="120">
+                    <ComboBox x:Name="steuerklasse" Width="120">
                         <ComboBoxItem IsSelected="True">Klasse 1</ComboBoxItem>
                         <ComboBoxItem>Klasse 2</ComboBoxItem>
                         <ComboBoxItem>Klasse 3</ComboBoxItem>
@@ -46,12 +46,12 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label VerticalContentAlignment="Center" Padding="5" Width="300">In der Kirche</Label>
-                    <RadioButton VerticalContentAlignment="Center" IsChecked="True">Ja</RadioButton>
+                    <RadioButton x:Name="kirche" VerticalContentAlignment="Center" IsChecked="True">Ja</RadioButton>
                     <RadioButton VerticalContentAlignment="Center">Nein</RadioButton>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label VerticalContentAlignment="Center" Padding="5" Width="300">Bundesland</Label>
-                    <ComboBox Width="120">
+                    <ComboBox x:Name="bundesland" Width="120">
                         <ComboBoxItem IsSelected="True">Berlin</ComboBoxItem>
                         <ComboBoxItem >Bremen</ComboBoxItem>
                         <ComboBoxItem >Hamburg</ComboBoxItem>
@@ -72,16 +72,16 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label VerticalContentAlignment="Center" Padding="5" Width="300">Wie Alt bist Du?</Label>
-                    <TextBox MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120" PreviewTextInput="input_only_numbers">25</TextBox>
+                    <TextBox x:Name="alter" MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120" PreviewTextInput="input_only_numbers">25</TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label VerticalContentAlignment="Center" Padding="5" Width="300">Kinder?</Label>
-                    <RadioButton x:Name="kinder_ja_radioButton" Checked="kinder_ja_radioButton_onChecked" Unchecked="kinder_ja_radioButton_onChecked" VerticalContentAlignment="Center">Ja</RadioButton>
+                    <RadioButton x:Name="kinder" Checked="kinder_onChecked" Unchecked="kinder_onChecked" VerticalContentAlignment="Center">Ja</RadioButton>
                     <RadioButton VerticalContentAlignment="Center" IsChecked="True">Nein</RadioButton>
                 </StackPanel>
                 <StackPanel x:Name="kinderfreibetrag_Panel" Orientation="Horizontal" Visibility="Collapsed">
                     <Label VerticalContentAlignment="Center" Padding="5" Width="300">Kinderfreibetrag</Label>
-                    <ComboBox Width="120">
+                    <ComboBox x:Name="kinderfreibetrag" Width="120">
                         <ComboBoxItem IsSelected="True">0</ComboBoxItem>
                         <ComboBoxItem >0.5</ComboBoxItem>
                         <ComboBoxItem >1</ComboBoxItem>
@@ -93,24 +93,29 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label VerticalContentAlignment="Center" Padding="5" Width="300">Krankenversicherung?</Label>
-                    <ComboBox x:Name="krankenversicherung_combobox" SelectionChanged="krankenversicherung_combobox_onChanged" Width="120">
+                    <ComboBox x:Name="krankenversicherung" SelectionChanged="krankenversicherung_onChanged" Width="120">
                         <ComboBoxItem IsSelected="True">gesetzliche Versicherung</ComboBoxItem>
-                        <ComboBoxItem x:Name="privatversicherung_comboboxItem">private Versicherung</ComboBoxItem>
+                        <ComboBoxItem>private Versicherung</ComboBoxItem>
                     </ComboBox>
                 </StackPanel>
                 <StackPanel x:Name="privatversicherung_Panel" Orientation="Horizontal" Visibility="Collapsed">
-                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Wie hoch ist der Private Versicherungsbeitrag?</Label>
-                    <TextBox MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right" PreviewTextInput="input_only_numbers">0</TextBox>
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Wie hoch ist der Monatliche Beitrag?</Label>
+                    <TextBox x:Name="private_versicherungsbeitrag" MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right" PreviewTextInput="input_only_numbers">0</TextBox>
                     <Label VerticalContentAlignment="Center" Padding="5">€</Label>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel x:Name="arbeitgeberzuschuss_Panel" Orientation="Horizontal" Visibility="Collapsed">
+                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Arbeitgeberzuschuss?</Label>
+                    <RadioButton x:Name="arbeitgeberzuschuss" VerticalContentAlignment="Center">Ja</RadioButton>
+                    <RadioButton VerticalContentAlignment="Center" IsChecked="True">Nein</RadioButton>
+                </StackPanel>
+                <StackPanel x:Name="krankenkassen_zusatzbeitrag_Panel" Orientation="Horizontal">
                     <Label VerticalContentAlignment="Center" Padding="5" Width="300">Krankenversicherung-Zusatzbeitrag</Label>
-                    <TextBox MaxLines="1" MaxLength="3" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right">1,7</TextBox>
+                    <TextBox x:Name="krankenkassen_zusatsbeitrag" MaxLines="1" MaxLength="3" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right">1,7</TextBox>
                     <Label VerticalContentAlignment="Center" Padding="5">%</Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label VerticalContentAlignment="Center" Padding="5" Width="300">Rentenversicherung</Label>
-                    <ComboBox Width="120">
+                    <ComboBox x:Name="rentenversicherung" Width="120">
                         <ComboBoxItem IsSelected="True">gesetzliche Versicherung</ComboBoxItem>
                         <ComboBoxItem>private Versicherung</ComboBoxItem>
                     </ComboBox>

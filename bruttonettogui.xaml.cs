@@ -21,31 +21,37 @@ namespace brutto_netto_rechner_ui
             InitializeComponent();
         }
 
-        private void krankenversicherung_combobox_onChanged(object sender,SelectionChangedEventArgs e)
+        private void krankenversicherung_onChanged(object sender,SelectionChangedEventArgs e)
         {
-            if (privatversicherung_comboboxItem == null)
+            ComboBox krankenversicherung = (ComboBox) sender;
+
+            if (privatversicherung_Panel == null)
             {
                 return;
             }
 
-            if (privatversicherung_comboboxItem.IsSelected)
+            if (krankenversicherung.Text.Equals("private Versicherung"))
             {
-                privatversicherung_Panel.Visibility = Visibility.Visible;
+                privatversicherung_Panel.Visibility = Visibility.Collapsed;
+                arbeitgeberzuschuss_Panel.Visibility = Visibility.Collapsed;
+                krankenkassen_zusatzbeitrag_Panel.Visibility = Visibility.Visible;
             }
             else
             {
-                privatversicherung_Panel.Visibility = Visibility.Collapsed;
+                privatversicherung_Panel.Visibility = Visibility.Visible;
+                arbeitgeberzuschuss_Panel.Visibility = Visibility.Visible;
+                krankenkassen_zusatzbeitrag_Panel.Visibility = Visibility.Collapsed;
             }
         }
 
-        private void kinder_ja_radioButton_onChecked(object sender, RoutedEventArgs e)
+        private void kinder_onChecked(object sender, RoutedEventArgs e)
         {
-            if (kinder_ja_radioButton == null)
+            if (kinder == null)
             {
                 return;
             }
 
-            if (kinder_ja_radioButton.IsChecked.GetValueOrDefault())
+            if (kinder.IsChecked.GetValueOrDefault())
             {
                 kinderfreibetrag_Panel.Visibility = Visibility.Visible;
             }
@@ -74,7 +80,14 @@ namespace brutto_netto_rechner_ui
             // 3 warten auf endergebnis
             // 4 ausgabe in die view
 
-            MessageBox.Show("KEKS");
+            MessageBox.Show("KEKS " + abrechnungsjahr.Text);
+
+            // "brutto 3000"
+            // split ' '
+            // "brutto" "3000"
+            // key("brutto") value(Convert.ToInt32);
+
+
         }
     }
 }
