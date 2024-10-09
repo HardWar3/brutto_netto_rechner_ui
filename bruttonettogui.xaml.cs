@@ -1,13 +1,10 @@
-﻿using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.IO;
+using System.IO.MemoryMappedFiles;
+using System.Threading;
+using System.Collections.Generic;
 
 namespace brutto_netto_rechner_ui
 {
@@ -16,6 +13,24 @@ namespace brutto_netto_rechner_ui
     /// </summary>
     public partial class Bruttonettogui : Window
     {
+        private Dictionary<string, int> userValues = new Dictionary<string, int>();
+        // enums schreiben für alle 0 1 2 fälle !!! LESBARKEIT !!!
+        // members entfernen
+        //private string  _brutto = "brutto";
+        //private string  _abrechnungsart = "abrechnungsart";
+        //private string  _abrechnungsjahr = "abrechnungsjahr";
+        //private string  _versorgungsbezuege = "versorgungsbezuege";
+        //private string  _steuerklasse = "steuerklasse";
+        //private string  _kirche = "kirche";
+        //private string  _bundesland = "bundesland";
+        //private string  _alter = "alter";
+        //private string  _kinder = "kinder";
+        //private string  _kinderfreibetrag = "kinderfreibetrag";
+        //private string  _krankenversicherung = "krankenversicherung";
+        //private string  _privatversicherungsbetrag = "privatversicherungsbetrag";
+        //private string  _arbeitgeberzuschuss = "arbeitgeberzuschuss";
+        //private string  _rentenversicherung = "rentenversicherung";
+
         public Bruttonettogui()
         {
             InitializeComponent();
@@ -24,6 +39,7 @@ namespace brutto_netto_rechner_ui
         private void krankenversicherung_onChanged(object sender,SelectionChangedEventArgs e)
         {
             ComboBox krankenversicherung = (ComboBox) sender;
+            int krankenkassenArt = 0;
 
             if (privatversicherung_Panel == null)
             {
@@ -35,17 +51,33 @@ namespace brutto_netto_rechner_ui
                 privatversicherung_Panel.Visibility = Visibility.Collapsed;
                 arbeitgeberzuschuss_Panel.Visibility = Visibility.Collapsed;
                 krankenkassen_zusatzbeitrag_Panel.Visibility = Visibility.Visible;
+
+                krankenkassenArt = 0;
             }
             else
             {
                 privatversicherung_Panel.Visibility = Visibility.Visible;
                 arbeitgeberzuschuss_Panel.Visibility = Visibility.Visible;
                 krankenkassen_zusatzbeitrag_Panel.Visibility = Visibility.Collapsed;
+
+                if (arbeitgeberzuschuss.IsChecked == false)
+                {
+                    krankenkassenArt = 1;
+                } else
+                {
+                    krankenkassenArt = 2;
+                }
             }
+
+
+            userValues.Remove("krankenversicherung");
+            userValues.Add("krankenversicherung", krankenkassenArt);
         }
 
         private void kinder_onChecked(object sender, RoutedEventArgs e)
         {
+            int hasKinder = 0;
+            int _kinderfreibetrag = 0;
             if (kinder == null)
             {
                 return;
@@ -54,11 +86,22 @@ namespace brutto_netto_rechner_ui
             if (kinder.IsChecked.GetValueOrDefault())
             {
                 kinderfreibetrag_Panel.Visibility = Visibility.Visible;
+                hasKinder = 1;
+                _kinderfreibetrag = Convert.ToInt32(kinderfreibetrag.Text) * 10;
+
             }
             else
             {
                 kinderfreibetrag_Panel.Visibility = Visibility.Collapsed;
+                kinderfreibetrag.SelectedIndex = 0;
+                hasKinder = 0;
+                _kinderfreibetrag = 0;
             }
+
+            userValues.Remove("kinder");
+            userValues.Add("kinder", hasKinder);
+            userValues.Remove("kinderfreibetrag");
+            userValues.Add("kinderfreibetrag", _kinderfreibetrag);
         }
 
         private void input_only_numbers(object sender, TextCompositionEventArgs e)
@@ -87,7 +130,15 @@ namespace brutto_netto_rechner_ui
             // "brutto" "3000"
             // key("brutto") value(Convert.ToInt32);
 
-
+            using (MemoryMappedFile mmf = MemoryMappedFile.CreateNew("kekse",10000))
+            {
+                bool mutexCreated;
+                Mutex mutex = new Mutex(true, "BruttoNettoRechner" , out mutexCreated);
+                using (MemoryMappedViewStream stream = mmf.CreateViewStream())
+                {
+                    BinaryWriter bwriter = new BinaryWriter(stream);
+                }
+            }
         }
     }
 }
