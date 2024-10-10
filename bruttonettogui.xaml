@@ -13,7 +13,7 @@
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label VerticalContentAlignment="Center" Padding="5" Width="300">Brutto Gehalt:</Label>
-                    <TextBox x:Name="bruttogehalt" MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right" PreviewTextInput="input_only_numbers">3000</TextBox>
+                    <TextBox x:Name="bruttogehalt" MaxLines="1" MaxLength="8" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right" PreviewTextInput="input_only_numbers" TextChanged="bruttoGehalt_onChanged">3000</TextBox>
                     <Label VerticalContentAlignment="Center" Padding="5">€</Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
@@ -112,13 +112,6 @@
                     <Label VerticalContentAlignment="Center" Padding="5" Width="300">Krankenversicherung-Zusatzbeitrag</Label>
                     <TextBox x:Name="krankenkassen_zusatsbeitrag" MaxLines="1" MaxLength="3" Padding="5" TextWrapping="Wrap" Width="120" TextAlignment="Right">1,7</TextBox>
                     <Label VerticalContentAlignment="Center" Padding="5">%</Label>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label VerticalContentAlignment="Center" Padding="5" Width="300">Rentenversicherung</Label>
-                    <ComboBox x:Name="rentenversicherung" Width="120">
-                        <ComboBoxItem IsSelected="True">gesetzliche Versicherung</ComboBoxItem>
-                        <ComboBoxItem>private Versicherung</ComboBoxItem>
-                    </ComboBox>
                 </StackPanel>
                 <StackPanel Margin="0 20 0 0">
                     <Button Width="120" Click="on_submit_the_caluation">Berechnen</Button>

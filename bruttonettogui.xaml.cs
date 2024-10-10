@@ -13,29 +13,31 @@ namespace brutto_netto_rechner_ui
     /// </summary>
     public partial class Bruttonettogui : Window
     {
-        private Dictionary<string, int> userValues = new Dictionary<string, int>();
+        private Dictionary<int, int> userValues = new Dictionary<int, int>() 
+        {
+            { (int)BruttoNettoGuiFields.Brutto, 0 },
+            { (int)BruttoNettoGuiFields.Abrechnungsart, 0 },
+            { (int)BruttoNettoGuiFields.Abrechnungsjahr, 0 },
+            { (int)BruttoNettoGuiFields.Versorgungsbezuege, 0 },
+            { (int)BruttoNettoGuiFields.Steuerklasse, 0 },
+            { (int)BruttoNettoGuiFields.Kirche, 0 },
+            { (int)BruttoNettoGuiFields.Bundesland, 0}
+        };
         // enums schreiben für alle 0 1 2 fälle !!! LESBARKEIT !!!
-        // members entfernen
-        //private string  _brutto = "brutto";
-        //private string  _abrechnungsart = "abrechnungsart";
-        //private string  _abrechnungsjahr = "abrechnungsjahr";
-        //private string  _versorgungsbezuege = "versorgungsbezuege";
-        //private string  _steuerklasse = "steuerklasse";
-        //private string  _kirche = "kirche";
-        //private string  _bundesland = "bundesland";
-        //private string  _alter = "alter";
-        //private string  _kinder = "kinder";
-        //private string  _kinderfreibetrag = "kinderfreibetrag";
-        //private string  _krankenversicherung = "krankenversicherung";
-        //private string  _privatversicherungsbetrag = "privatversicherungsbetrag";
-        //private string  _arbeitgeberzuschuss = "arbeitgeberzuschuss";
-        //private string  _rentenversicherung = "rentenversicherung";
 
         public Bruttonettogui()
         {
             InitializeComponent();
         }
+        private void bruttoGehalt_onChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox bruttoGehalt = (TextBox)sender;
+            int _brutto = Convert.ToInt32(bruttoGehalt.Text);
 
+
+            //userValues.Remove("brutto");
+            //userValues.Add("brutto", _brutto);
+        }
         private void krankenversicherung_onChanged(object sender,SelectionChangedEventArgs e)
         {
             ComboBox krankenversicherung = (ComboBox) sender;
@@ -70,8 +72,8 @@ namespace brutto_netto_rechner_ui
             }
 
 
-            userValues.Remove("krankenversicherung");
-            userValues.Add("krankenversicherung", krankenkassenArt);
+            //userValues.Remove("krankenversicherung");
+            //userValues.Add("krankenversicherung", krankenkassenArt);
         }
 
         private void kinder_onChecked(object sender, RoutedEventArgs e)
@@ -98,10 +100,10 @@ namespace brutto_netto_rechner_ui
                 _kinderfreibetrag = 0;
             }
 
-            userValues.Remove("kinder");
-            userValues.Add("kinder", hasKinder);
-            userValues.Remove("kinderfreibetrag");
-            userValues.Add("kinderfreibetrag", _kinderfreibetrag);
+            //userValues.Remove("kinder");
+            //userValues.Add("kinder", hasKinder);
+            //userValues.Remove("kinderfreibetrag");
+            //userValues.Add("kinderfreibetrag", _kinderfreibetrag);
         }
 
         private void input_only_numbers(object sender, TextCompositionEventArgs e)
