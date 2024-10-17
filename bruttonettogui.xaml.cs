@@ -13,15 +13,21 @@ namespace brutto_netto_rechner_ui
     /// </summary>
     public partial class Bruttonettogui : Window
     {
-        private Dictionary<int, int> userValues = new Dictionary<int, int>() 
+        private Dictionary<BruttoNettoGuiFields, int> userValues = new Dictionary<BruttoNettoGuiFields, int>() 
         {
-            { (int)BruttoNettoGuiFields.Brutto, 0 },
-            { (int)BruttoNettoGuiFields.Abrechnungsart, 0 },
-            { (int)BruttoNettoGuiFields.Abrechnungsjahr, 0 },
-            { (int)BruttoNettoGuiFields.Versorgungsbezuege, 0 },
-            { (int)BruttoNettoGuiFields.Steuerklasse, 0 },
-            { (int)BruttoNettoGuiFields.Kirche, 0 },
-            { (int)BruttoNettoGuiFields.Bundesland, 0}
+            { BruttoNettoGuiFields.Brutto, 0 },
+            { BruttoNettoGuiFields.Abrechnungsart, 0 },
+            { BruttoNettoGuiFields.Abrechnungsjahr, 0 },
+            { BruttoNettoGuiFields.Versorgungsbezuege, 0 },
+            { BruttoNettoGuiFields.Steuerklasse, 0 },
+            { BruttoNettoGuiFields.Kirche, 0 },
+            { BruttoNettoGuiFields.Bundesland, 0},
+            { BruttoNettoGuiFields.Alter, 0 },
+            { BruttoNettoGuiFields.Kinder, 0 },
+            { BruttoNettoGuiFields.Kinderfreibetrag, 0},
+            { BruttoNettoGuiFields.KrankenversicherungsArt, 0 },
+            { BruttoNettoGuiFields.KrankenversicherungsBeitrag, 0 },
+            { BruttoNettoGuiFields.KrankenversicherungArbeitgeberzuschuss, 0 }
         };
         // enums schreiben für alle 0 1 2 fälle !!! LESBARKEIT !!!
 
@@ -34,9 +40,7 @@ namespace brutto_netto_rechner_ui
             TextBox bruttoGehalt = (TextBox)sender;
             int _brutto = Convert.ToInt32(bruttoGehalt.Text);
 
-
-            //userValues.Remove("brutto");
-            //userValues.Add("brutto", _brutto);
+            userValues[BruttoNettoGuiFields.Brutto] = _brutto;
         }
         private void krankenversicherung_onChanged(object sender,SelectionChangedEventArgs e)
         {
